@@ -1,5 +1,6 @@
 import { useEffect,useState} from 'react'
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ProductForm = (props)=>{
     const [message, setMessage]= useState('Loading...')
@@ -28,20 +29,54 @@ const ProductForm = (props)=>{
         
 
       
-        <div className="col-6 mx-auto">
+        <div className="col-6 mx-auto mt-5">
         <h1>Add Product</h1>
-            <form  onSubmit={onSubmitHandler}>
-                <label className="form-label">Title</label>
-                <input className="form-control" type="text" value={title} onChange = {(e)=>setTitle(e.target.value)}/>
-
-                <label className="form-label">Price</label>
-                <input type="text" className="form-control" value={price} onChange = {(e)=>setPrice(e.target.value)}/>
-
-                <label className="form-label">Description</label>
-                <input type="text" className="form-control" name="description" value={description} onChange = {(e)=>setDescription(e.target.value)}/>
-                <button type="submit" className="btn btn-info mt-3">Create Product</button>
-            </form>
-        </div>
+        <form onSubmit={onSubmitHandler}>
+          <div className="mb-3">
+            <label htmlFor="title" className="form-label">
+              Title
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+  
+          <div className="mb-3">
+            <label htmlFor="price" className="form-label">
+              Price
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+  
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">
+              Description
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="description"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+  
+          <button type="submit" className="btn btn-info mt-3">
+            Create Product
+          </button>
+        </form>
+      </div>
         
         
     )

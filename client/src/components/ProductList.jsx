@@ -28,24 +28,42 @@ const ProductList = (props) => {
     }, [])
     
     return (
-        <div>
-        <h1> List of Products</h1>
-        <table className="table"></table>
-            {
-                product.map((product, index)=>{
-                return (
-                <div key={index}>
-                    <p>{product.firstName}</p> 
-                    <p>{product.lastName}</p>
-                    <Link to={`/product/${product._id}`}>{product.title} click to view</Link> 
-                    | 
-                    <Link to={"/product/edit/" + product._id}>Edit</Link> 
-                    | 
-                    <button onClick={(e)=>{deleteProduct(product._id)}}>Delete</button>
-                </div>
-                )})
-            }
+        <div className="container mt-4">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <h1 className="mb-4">List of Products</h1>
+          <table className="table">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            {product.map((productItem, index) => (
+                <tr key={index} className="table-light">
+                   <td >{productItem.title}</td>
+                   <td >{productItem.price}</td>
+                
+                   <td className="align-middle">
+                      <Link to={`/product/${productItem._id}`} className="btn btn-info mr-2">
+                       Details  
+                      </Link>
+                      <Link to={`/product/edit/${productItem._id}`} className="btn btn-warning mr-2">
+                       Edit
+                     </Link>
+                     <button onClick={(e) => deleteProduct(productItem._id)} className="btn btn-danger">
+                      Delete
+                     </button>
+                   </td>
+                </tr>
+            ))}
+            </tbody>
+          </table>
         </div>
+      </div>
+    </div>
     );
         
 }

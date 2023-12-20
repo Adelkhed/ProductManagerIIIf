@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import {useParams, useNavigate, Link} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const ProductDetail = (props) => {
     const [product, setProduct] = useState({})
     const {id} = useParams(); 
@@ -25,13 +27,31 @@ const ProductDetail = (props) => {
         .catch(err => console.log(err))
     }
     return (
-        <div className="col-6 mx-auto">
-            <p>Title: {product.title}</p>
-            <p>Price: ${product.price}</p>
-            <p>Description: {product.description}</p>
-            <Link to={"/product/edit/" + product._id}>Edit</Link> 
-            <button className="btn btn-danger" onClick={(e)=>{deleteProduct(product._id)}}>Delete</button>
+        <div className="container mt-4">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <div className="card">
+              <div className="card-body">
+                <h3 className="card-title">Product Details</h3>
+                <p className="card-text">Title: {product.title}</p>
+                <p className="card-text">Price: ${product.price}</p>
+                <p className="card-text">Description: {product.description}</p>
+                <Link to={`/product/edit/${product._id}`} className="btn btn-primary mr-2">
+                  Edit
+                </Link>
+                <button
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    deleteProduct(product._id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     );
 }
 export default ProductDetail;
